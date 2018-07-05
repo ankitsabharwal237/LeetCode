@@ -1,0 +1,52 @@
+GiveCompare two version numbers version1 and version2.
+If version1 > version2 return 1; if version1 < version2 return -1;otherwise return 0.
+
+You may assume that the version strings are non-empty and contain only digits and the . character.
+The . character does not represent a decimal point and is used to separate number sequences.
+For instance, 2.5 is not "two and a half" or "half way to version three", it is the fifth second-level revision of the second first-level revision.n a string containing only digits, restore it by returning all possible valid IP address combinations.
+
+class Solution(object):
+    def restoreIpAddresses(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+
+        res=[]
+        self.dfs(s,0,"",res)
+        return res
+
+    def dfs(self,s,index,path,res):
+        if index==4:
+            if not s: res.append(path[:-1])
+            return
+        for i in range(1,4):
+            if i<=len(s):
+                if i==1: self.dfs(s[i:],index+1,path+s[:i]+".",res)
+                if i==2 and int(s[0])!=0: self.dfs(s[i:],index+1,path+s[:i]+".",res)
+                if i==3 and int(s[0])!=0 and int(s[:3])<=255: self.dfs(s[i:],index+1,path+s[:i]+".",res)
+
+
+class Solution(object):
+    def compareVersion(self, version1, version2):
+        """
+        :type version1: str
+        :type version2: str
+        :rtype: int
+        """
+        v1,v2=map(int,version1.split(".")),map(int,version2.split("."))
+        while v1 and v2:
+            m,k=v1.pop(0),v2.pop(0)
+            if m>k: return 1
+            elif m<k:return -1
+        if v1: 
+            v1=int(''.join(str(x) for x in v1))
+            if v1>0: return 1
+            else: return 0
+        elif v2: 
+            v2=int(''.join(str(x) for x in v2))
+            if v2>0: return -1
+            else: return 0
+        else: return 0
+        
+       
