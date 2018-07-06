@@ -1,0 +1,18 @@
+class Solution(object):
+    def findMaxAverage(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: float
+        P[i] = A[0] + A[1] + ... + A[i-1] in linear time. Then, A[i] + A[i+1] + ... + A[i+K-1] = P[i+K] - P[i]
+        """
+        p=[0]
+        for i in nums:
+            p.append(p[-1]+i)
+        #print p
+        ma=float("-inf")
+        for i in range(len(nums)-k+1):
+            ma=max(p[i+k]-p[i],ma)
+        return ma/float(k) 
+                
+                
