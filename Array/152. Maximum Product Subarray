@@ -1,0 +1,14 @@
+Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.
+class Solution(object):
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums: return 0
+        min_ending_here,max_ending_here,max_so_far=nums[0],nums[0],nums[0]
+        for i in nums[1:]:
+            max_ending_here,min_ending_here=max(i,i*max_ending_here,i*min_ending_here),min(i,i*max_ending_here,i*min_ending_here)
+            max_so_far=max(max_so_far,max_ending_here)
+        return max_so_far
+        
