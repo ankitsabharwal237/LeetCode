@@ -1,0 +1,10 @@
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        m=(''.join(e for e in s if e.isalnum())).lower()
+        #print m
+        return m==m[::-1]
+            
