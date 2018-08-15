@@ -1,0 +1,17 @@
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        
+        if numRows in (0,1) or len(s)<=numRows: return s
+        row,direction,res=0,-1,[""]*numRows
+        for i in s:
+            res[row]+=i
+            if row==0 or row==numRows-1:
+                direction*=-1
+            row+=direction
+        return ''.join(res)
+    
