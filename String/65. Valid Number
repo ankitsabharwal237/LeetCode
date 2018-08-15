@@ -1,0 +1,4 @@
+if re.match('^\\s*(\\+|-)?(\\d+|\\d*\\.\\d+|\\d+\\.\\d*|\\d+\\.?\\d*e[\\+|-]?\\d+|\\d*\\.?\\d+e[\\+|-]?\\d+)\\s*$',s):
+            return True
+        else: 
+            return False
