@@ -1,0 +1,25 @@
+class Solution(object):
+    def findSubstring(self, s, w):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        if not s or not w: return []
+        len_s,len_word,total_len_word=len(s),len(w[0]),len(w)*len(w[0])
+        d,r=collections.Counter(w),[]
+        #print d
+        i=0
+        for i in range(len_s-total_len_word+1):
+            #print i
+            m,j=dict(d),i
+            #print m
+            word=s[j:j+len_word] 
+            while word in m:
+                m[word]-=1
+                j+=len_word
+                if m[word]==0: del m[word]
+                word=s[j:j+len_word]
+            if not m: r.append(i)
+                
+        return r
