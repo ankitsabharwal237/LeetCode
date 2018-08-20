@@ -1,0 +1,18 @@
+class Solution(object):
+    def collect (self,word):
+        
+        j=collections.defaultdict(list)
+        for i,p in enumerate(word):
+            if p in j: j[p].append(i)
+            else: j[p]=[i]
+        return j.values()
+    def findAndReplacePattern(self, words, pattern):
+        """
+        :type words: List[str]
+        :type pattern: str
+        :rtype: List[str]
+        """
+        k,res=self.collect(pattern),[]
+        for i in words: 
+            if sorted(self.collect(i))==sorted(k): res.append(i)
+        return res
